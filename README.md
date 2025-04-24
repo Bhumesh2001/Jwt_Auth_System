@@ -20,9 +20,9 @@ A secure Node.js authentication API using JWT, Express, and MongoDB.
 
 ## Env Crednetials
 
-MONGODB_URI=mongodb://localhost:27017/jwt_auth
-JWT_SECRET=your_jwt_secret_key_here
-PORT=3000
+1. MONGODB_URI=mongodb://localhost:27017/jwt_auth
+2. JWT_SECRET=your_jwt_secret_key_here
+3. PORT=3000
 
 ## API Endpoints
 
