@@ -22,6 +22,10 @@ const userSchema = new mongoose.Schema({
         minlength: [6, 'Password must be at least 6 characters'],
         select: false
     },
+    refreshToken: {
+        type: String,
+        select: false
+    },
     createdAt: {
         type: Date,
         default: Date.now
@@ -44,6 +48,12 @@ userSchema.pre('save', async function (next) {
 // Method to compare passwords
 userSchema.methods.comparePassword = async function (candidatePassword) {
     return await bcrypt.compare(candidatePassword, this.password);
+};
+
+// Add this method to clear refresh token
+userSchema.methods.clearRefreshToken = async function () {
+    this.refreshToken = undefined;
+    await this.save();
 };
 
 module.exports = mongoose.model('User', userSchema);

@@ -8,6 +8,7 @@ A secure Node.js authentication API using JWT, Express, and MongoDB.
 - User login with JWT
 - Protected routes
 - Password hashing
+- Token refresh mechanism
 - Rate limiting
 - Security headers
 
@@ -22,7 +23,15 @@ A secure Node.js authentication API using JWT, Express, and MongoDB.
 
 1. MONGODB_URI=mongodb://localhost:27017/jwt_auth
 2. JWT_SECRET=your_jwt_secret_key_here
-3. PORT=3000
+3. JWT_REFRESH_SECRET=your_refresh_token_secret_here
+4. PORT=3000
+
+## Token System
+
+| Token Type    | Expiration | Storage Location | Purpose                  |
+| ------------- | ---------- | ---------------- | ------------------------ |
+| Access Token  | 15 minutes | Client memory    | API authorization        |
+| Refresh Token | 7 days     | HTTP-only cookie | Obtain new access tokens |
 
 ## API Endpoints
 
@@ -39,6 +48,7 @@ Register a new user
   "password": "password123"
 }
 ```
+
 ### POST /api/login
 
 Login user
@@ -51,6 +61,7 @@ Login user
   "password": "password123"
 }
 ```
+
 ### GET /api/profile
 
 Get user profile (protected)
@@ -67,6 +78,14 @@ Get Refresh Token
 
 ```json
 {
-  "token": "token...."
+  "refreshToken": "your refresh token...."
 }
 ```
+
+### POST /api/logout
+
+Logout user
+
+### Headers
+
+Authorization: Bearer <token>
