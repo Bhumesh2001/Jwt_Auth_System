@@ -18,6 +18,12 @@ A secure Node.js authentication API using JWT, Express, and MongoDB.
 3. Create `.env` file (see `.env.example`)
 4. Start server: `npm run dev`
 
+## Env Crednetials
+
+MONGODB_URI=mongodb://localhost:27017/jwt_auth
+JWT_SECRET=your_jwt_secret_key_here
+PORT=3000
+
 ## API Endpoints
 
 ### POST /api/register
